@@ -1,17 +1,25 @@
 import { useState } from 'react'
 
-import { CORE_CONCEPTS } from './data.js';
 import { Header } from './components/Header/Header.jsx';
-import { CoreConcept } from './components/CoreConcept/CoreConcept.jsx';
+import { DynamicCoreConcept } from './components/DynamicCoreConcept/DynamicCoreConcept.jsx';
+
 import TabButton from './components/TabButton/TabButton.jsx';
 import { EXAMPLES } from './data.js';
 
+
 function App() {
   const [selectedTopic, setSelectedTopic] = useState();
+  const tabButtons = ["components", "jsx", "props", "state"]
 
   function handleSelect(selectedButton) {
     setSelectedTopic(selectedButton);
   }
+
+  const formatTitleTab = (tabName) => {
+    if (!tabName) return tabName;
+    return tabName.charAt(0).toUpperCase() + tabName.slice(1);
+  }
+
 
   return (
     <div>
@@ -21,32 +29,19 @@ function App() {
           <h2>Core Concepts</h2>
           <ul>
             {/* Key should be unique for each item */}
-            {CORE_CONCEPTS.map((conceptItem) => <CoreConcept key={conceptItem.title} {...conceptItem} />)}
+            <DynamicCoreConcept />
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton
-              isSelected={selectedTopic === 'components'}
-              onSelect={() => handleSelect('components')}>
-                Components
-            </TabButton>
-            <TabButton
-              isSelected={selectedTopic === 'jsx'}
-              onSelect={() => handleSelect('jsx')}>
-                JSX
-            </TabButton>
-            <TabButton
-              isSelected={selectedTopic === 'props'}
-              onSelect={() => handleSelect('props')}>
-                Props
-            </TabButton>
-            <TabButton
-              isSelected={selectedTopic === 'state'}
-              onSelect={() => handleSelect('state')}>
-                State
-            </TabButton>
+            {tabButtons.map(tabConcept =>
+              <TabButton
+                key={tabConcept}
+                isSelected={selectedTopic === tabConcept}
+                onSelect={() => handleSelect(tabConcept)}
+              > {formatTitleTab(tabConcept)} </TabButton>
+            )}
           </menu>
             {!selectedTopic && <p>Please select a topic!!!</p>}
             {selectedTopic && (
