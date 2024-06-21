@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { Header } from './components/Header/Header.jsx';
 import { DynamicCoreConcept } from './components/DynamicCoreConcept/DynamicCoreConcept.jsx';
+import { TabButton } from './components/TabButton/TabButton.jsx';
 
-import TabButton from './components/TabButton/TabButton.jsx';
 import { EXAMPLES } from './data.js';
 
 
@@ -19,7 +19,6 @@ function App() {
     if (!tabName) return tabName;
     return tabName.charAt(0).toUpperCase() + tabName.slice(1);
   }
-
 
   return (
     <div>

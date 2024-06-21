@@ -1,4 +1,4 @@
-export default function TabButton({ children, onSelect, isSelected }) {
+export function TabButton({ children, onSelect, isSelected }) {
 
     return (
         <li>
