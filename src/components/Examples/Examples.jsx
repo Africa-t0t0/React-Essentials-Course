@@ -34,17 +34,18 @@ export function Examples() {
 
     return (
         <Section title="Examples" id="examples">
-            <Tabs buttons={
-                <>
-                    {tabButtons.map(tabConcept =>
-                    <TabButton
-                        key={tabConcept}
-                        isSelected={selectedTopic === tabConcept}
-                        onClick={() => handleSelect(tabConcept)}
-                    > {formatTitleTab(tabConcept)} </TabButton>
-                    )}
-                </>
-            }>
+            <Tabs
+                buttons={
+                    <>
+                        {tabButtons.map(tabConcept =>
+                        <TabButton
+                            key={tabConcept}
+                            isSelected={selectedTopic === tabConcept}
+                            onClick={() => handleSelect(tabConcept)}
+                        > {formatTitleTab(tabConcept)} </TabButton>
+                        )}
+                    </>
+                }>
             {tabContent}
             </Tabs>
         </Section>
